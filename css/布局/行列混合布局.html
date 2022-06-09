@@ -1,0 +1,70 @@
+<!--
+ * @Author: 王荣
+ * @Date: 2022-06-09 15:16:36
+ * @LastEditors: 王荣
+ * @LastEditTime: 2022-06-09 15:16:36
+ * @Description: 填写简介
+-->
+
+<!-- left左浮动 right右浮动 宽度瓜分百分比 container最后清除浮动
+头尾多两行block而已 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body{
+            margin: 0; 
+            padding: 0; 
+            color: #fff;
+            text-align: center;
+        }
+        .header{
+            width:100%;
+            height: 50px;
+            background: gold;
+            line-height: 50px;
+        }
+        .container{
+            width: 90%;
+            margin: 0 auto;
+        }
+        .container::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .left{
+            width: 60%;
+            height: 1000px;
+            background: black;
+            float: left;
+        }
+        .right{
+            width: 40%;
+            height: 1000px;
+            background: burlywood;
+            float: right;
+        }
+        .footer{
+            width:100%;
+            height: 50px;
+            background: lightblue;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">头部</div>
+    <div class="container">
+        <div class="left">内容左侧</div>
+        <div class="right">内容右侧</div>
+    </div>
+    <div class="footer">底部</div>
+</body>
+</html>
