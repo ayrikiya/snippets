@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<body>
+    <div style="text-align: center;">
+        <canvas id="can" width="400" height="400" style="background: Black"></canvas>
+    </div>
+    
+	<script>
+		var sn = [ 42, 41 ], dz = 43, fx = 1, n;
+        var ctx = document.getElementById("can").getContext("2d"); // <canvas> 元素有一个叫做 getContext() 的方法，这个方法是用来获得渲染上下文和它的绘画功能。
+		
+        function draw(t, color) {
+			ctx.fillStyle = color;  //渲染上下文 颜色
+			ctx.fillRect(t % 20 * 20 + 1, ~~(t / 20) * 20 + 1, 18, 18); //fillRect(x, y, width, height) 绘制一个填充的矩形
+		};// ～～ 之运用：比如可以很方便的得到一个数的整形近似值
+
+		document.onkeydown = function(e) {
+			fx = sn[1] - sn[0] == (n = [ -1, -20, 1, 20 ][(e || event).keyCode - 37] || fx) ? fx : n
+		};
+
+		!function() {
+			sn.unshift(n = sn[0] + fx); //unshift() 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)。
+			if (sn.indexOf(n, 1) > 0 || n<0||n>399 || fx == 1 && n % 20 == 0 || fx == -1 && n % 20 == 19){
+                return alert("GAME OVER");
+            };
+
+			draw(n, "white");
+
+			if (n == dz) {
+				while (sn.indexOf(dz = ~~(Math.random() * 400)) >= 0);
+				draw(dz, "Yellow");
+			} else
+				draw(sn.pop(), "Black");
+				setTimeout(arguments.callee, 130);
+		}();
+
+	</script>
+</body>
+</html>
