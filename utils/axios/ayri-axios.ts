@@ -2,18 +2,12 @@
  * @Author: 王荣
  * @Date: 2022-06-09 14:44:21
  * @LastEditors: 王荣
- * @LastEditTime: 2022-06-09 14:44:35
+ * @LastEditTime: 2022-07-08 10:55:26
  * @Description: 填写简介
  */
 
 import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
-type IAxiosRequestConfig = AxiosRequestConfig&{
-    metadata?: {
-        startTime?: number,
-        endTime?: number
-    }
-}
 
 // 基本返回数据格式 (response.data)
 interface BaseResponse<T> {
@@ -45,7 +39,7 @@ const getAxiosInstance = (config?: AxiosRequestConfig): AxiosInstance => {
     }, config))
 
     // 每次请求 加loading和error
-    instance.interceptors.request.use((config: IAxiosRequestConfig) => {
+    instance.interceptors.request.use((config: AxiosRequestConfig) => {
         // 通过vuex管理全局弹窗状态 初看起来有点小题大作，但弹窗的状态放在哪个组件中都不合适，即使放在根组件，如果子组件有修改弹窗状态的需求，父子传值也一点不优雅。
         // store.commit('setLoading', true)
         // store.commit('setError', {status : false, message : ''})
@@ -56,7 +50,7 @@ const getAxiosInstance = (config?: AxiosRequestConfig): AxiosInstance => {
         return config
     })
 
-    instance.interceptors.response.use((response: AxiosResponse&{config : IAxiosRequestConfig}) => {
+    instance.interceptors.response.use((response: AxiosResponse) => {
     // 2xx范围内状态码触发成功处理
     let { data, status, statusText, headers, config, request } = response;
     

@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-06-08 17:05:41
  * @LastEditors: 王荣
- * @LastEditTime: 2022-06-16 14:38:02
+ * @LastEditTime: 2022-07-08 10:19:00
  * @Description: 类写法创建自定义axios
  */
 // export {}
@@ -15,13 +15,6 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 //   mesSuccess,
 //   mesWarning,
 // } from "src/util/message/message";
-
-interface IAxiosRequestConfig extends AxiosRequestConfig {
-  metadata?: {
-    startTime: number;
-    endTime: number;
-  };
-}
 
 // 基本返回数据格式 (response.data的类型)
 interface BaseResponseData<T> {
@@ -77,11 +70,11 @@ class CustomAxios {
 
     // 每次请求 加loading和error
     this.defaultInterceptors.requestId = instance.interceptors.request.use(
-      (config: IAxiosRequestConfig) => {
+      (config: AxiosRequestConfig) => {
         // 通过vuex管理全局弹窗状态 初看起来有点小题大作，但弹窗的状态放在哪个组件中都不合适，即使放在根组件，如果子组件有修改弹窗状态的需求，父子传值也一点不优雅。
         // store.commit('setLoading', true)
         // store.commit('setError', {status : false, message : ''})
-        mesLoading("加载中", "search_mes");
+        // mesLoading("加载中", "search_mes");
         // 拦截器计算响应时间
         config.metadata = {
           startTime: Number(new Date()),
@@ -93,14 +86,14 @@ class CustomAxios {
     );
 
     this.defaultInterceptors.responseId = instance.interceptors.response.use(
-      (response: AxiosResponse & { config: IAxiosRequestConfig }) => {
+      (response: AxiosResponse) => {
         // 2xx范围内状态码触发成功处理
         let { data, status, statusText, headers, config, request } = response;
 
         setTimeout(() => {
           // store.commit('setLoading', false)
           // console.log("1dfafsdgsdfgas");
-          mesSuccess("加载完成", "search_mes");
+          // mesSuccess("加载完成", "search_mes");
         }, 500);
 
         // 拦截器计算响应时间
@@ -136,7 +129,7 @@ class CustomAxios {
         setTimeout(() => {
           // store.commit('setLoading', false)
           // console.log("1dfafsdgsdfgas");
-          mesError(err?.message || "请求失败", "search_mes");
+          // mesError(err?.message || "请求失败", "search_mes");
         }, 500);
 
         // 这里必须是返回一个reject的promise， 这样才会走axios.request在then函数中的catch
@@ -160,7 +153,7 @@ class CustomAxios {
             setTimeout(() => {
               // store.commit('setLoading', false)
               // console.log("1dfafsdgsdfgas");
-              mesError(data?.message || "请求失败", "search_mes");
+              // mesError(data?.message || "请求失败", "search_mes");
             }, 500);
             console.log("成功但不是200", response);
             reject(data);
