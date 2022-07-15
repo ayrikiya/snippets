@@ -2,8 +2,8 @@
  * @Author: 王荣
  * @Date: 2022-06-09 15:35:52
  * @LastEditors: 王荣
- * @LastEditTime: 2022-06-09 15:35:52
- * @Description: 填写简介
+ * @LastEditTime: 2022-07-14 19:44:34
+ * @Description: cra封装的webpack eject后的配置详细 已使用在多个项目
  */
 
 // cra封装的webpack eject后的配置详细。
@@ -142,6 +142,7 @@ module.exports = function (webpackEnv) {
             }
 
             if (preProcessor === 'less-loader') {
+                // 支持内联 JavaScript
                 loader.options.javascriptEnabled = true
                 loader.options.modifyVars = {
                     'font-family': 'Roboto, Arial, "Microsoft YaHei", sans-serif',

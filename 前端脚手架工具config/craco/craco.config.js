@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-06-09 15:36:40
  * @LastEditors: 王荣
- * @LastEditTime: 2022-06-09 15:36:40
+ * @LastEditTime: 2022-07-14 19:44:05
  * @Description: 填写简介
  */
 
@@ -96,6 +96,7 @@ module.exports = {
                             "@drawer-header-padding" : "20px",
                             "@drawer-body-padding" : "0px 20px 20px 20px",
                         },
+                        // 支持内联 JavaScript
                         javascriptEnabled : true,
                     },
                 },

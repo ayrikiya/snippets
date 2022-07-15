@@ -2,8 +2,8 @@
  * @Author: 王荣
  * @Date: 2022-06-09 15:35:26
  * @LastEditors: 王荣
- * @LastEditTime: 2022-06-09 15:35:26
- * @Description: 填写简介
+ * @LastEditTime: 2022-07-14 11:49:04
+ * @Description: 学习webpack中的配置 已用到的配置项挨个详细说明
  */
 
 

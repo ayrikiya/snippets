@@ -21,6 +21,21 @@
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },
+  "babel": {
+    "presets": [
+        "react-app"
+    ],
+    "plugins": [
+        [
+            "import", 
+            { 
+              "libraryName": "antd", 
+              "libraryDirectory": "es", 
+              "style": true 
+            } 
+        ]
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
